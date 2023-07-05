@@ -4,5 +4,5 @@ router.get("/", (req, res) => {
 });
 
 router.use("/notes", require("./routes/notes"));
-
+router.use("/users", require("./routes/users"));
 module.exports = router;

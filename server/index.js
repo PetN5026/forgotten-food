@@ -9,6 +9,8 @@ require("dotenv").config();
 connectDB();
 
 app.use(express.static(DIST_DIR)); // NEW
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use("/api", require("./api"));
 app.get("/", (req, res) => {
   res.sendFile(HTML_FILE); // EDIT

@@ -1,13 +1,18 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const Home = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   // useEffect(() => {
   //   navigate("/notHome");
   // });
+
+  function handleClick() {
+    navigate("/notHome");
+  }
   return (
-    <div>
+    <div className="text-3xl font-bold underline">
       HOMEPAGE
+      <button onClick={handleClick}></button>
       <Link to="/notHome">nothome</Link>
     </div>
   );
