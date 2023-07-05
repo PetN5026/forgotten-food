@@ -2,7 +2,7 @@ const router = require("express").Router();
 const User = require("../../models/Users");
 const validator = require("validator");
 
-router.post("/create", async (req, res) => {
+router.post("/create", async (req, res, next) => {
   try {
     const validationErrors = {};
     if (!validator.isEmail(req.body.email))
@@ -23,6 +23,13 @@ router.post("/create", async (req, res) => {
       gmail_remove_dots: false,
     });
 
+    const existing = await User.findOne({
+      $or: [{ email: req.body.email }, { userName: req.body.userName }],
+    });
+    if (existing) {
+      res.send("user already exists").end();
+      return;
+    }
     await User.create(req.body);
     console.log("new user creating", req.body, "req");
     res.send("new user creating");
