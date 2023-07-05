@@ -1,8 +1,28 @@
 const router = require("express").Router();
 const User = require("../../models/Users");
+const validator = require("validator");
 
 router.post("/create", async (req, res) => {
   try {
+    const validationErrors = {};
+    if (!validator.isEmail(req.body.email))
+      validationErrors.emailErr = "Please enter a valid email address.";
+    if (!validator.isLength(req.body.password, { min: 8 }))
+      validationErrors.passwordErr =
+        "Password must be at least 8 characters long";
+
+    if (req.body.password !== req.body.confirmPassword)
+      validationErrors.passwordMatchErr = "Passwords do not match";
+
+    if (Object.keys(validationErrors).length) {
+      console.log(validationErrors);
+      res.send("Errors").end();
+      return;
+    }
+    req.body.email = validator.normalizeEmail(req.body.email, {
+      gmail_remove_dots: false,
+    });
+
     await User.create(req.body);
     console.log("new user creating", req.body, "req");
     res.send("new user creating");
