@@ -11,6 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 require("dotenv").config();
+require("./updatedPassport")(passport);
 connectDB();
 
 app.use(express.static(DIST_DIR)); // NEW

@@ -7,13 +7,16 @@ const Home = () => {
   //   navigate("/notHome");
   // });
 
-  function handleClick() {
-    navigate("/notHome");
+  async function handleClick() {
+    const res = await fetch("/api/notes");
+    console.log(res);
+    const data = await JSON.parse(res);
+    console.log(data);
   }
   return (
     <div>
       HOMEPAGE
-      <button onClick={handleClick}></button>
+      <button onClick={handleClick}>TEST</button>
       <Link to="/notHome">nothome</Link>
       <LoginForm />
     </div>

@@ -29,6 +29,13 @@ const LoginForm = () => {
     console.log(response);
   }
 
+  async function logout(e) {
+    e.preventDefault();
+    const response = await fetch("/api/users/logout", { method: "POST" });
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+  }
   return (
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
@@ -105,6 +112,16 @@ const LoginForm = () => {
                 className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 Sign in
+              </button>
+              <button
+                onClick={(e) => {
+                  logout(e);
+                  console.log("clicked logged in");
+                }}
+                type="submit"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              >
+                Logout
               </button>
             </div>
           </form>
