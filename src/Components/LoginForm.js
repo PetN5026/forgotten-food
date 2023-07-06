@@ -136,6 +136,7 @@ const LoginForm = () => {
             </a>
           </p>
         </div>
+        <button onClick={getNote}>Get notes</button>
       </div>
     </>
   );

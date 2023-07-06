@@ -3,7 +3,7 @@ module.exports = {
     if (req.isAuthenticated()) {
       return next();
     } else {
-      res.send("something something in ensureAuth");
+      res.send({ msd: "something something in ensureAuth" });
     }
   },
 };
