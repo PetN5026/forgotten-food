@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const notes = require("../../models/notes");
-router.get("/", (req, res) => {
-  res.send("stuff");
+router.get("/", async (req, res) => {
+  const note = await notes.findOne({ foods: "banana" }).lean();
+  res.send(note);
 });
 
 router.post("/create", async (req, res) => {

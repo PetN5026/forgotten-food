@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../../models/Users");
 const validator = require("validator");
+const passport = require("passport");
 
 router.post("/create", async (req, res, next) => {
   try {
@@ -37,5 +38,27 @@ router.post("/create", async (req, res, next) => {
     console.log(error);
   }
 });
+router.post("/login", async (req, res, next) => {
+  console.log(req.body);
+  req.body.email = validator.normalizeEmail(req.body.email, {
+    gmail_remove_dots: false,
+  });
 
+  passport.authenticate("local", (err, user, info) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash("errors", info);
+      return res.send("user not found");
+    }
+    req.logIn(user, (err) => {
+      if (err) {
+        return next(err);
+      }
+      // req.flash("success", { msg: "Success! You are logged in." });
+      res.send({ msg: "logged in", req: req.session });
+    });
+  })(req, res, next);
+});
 module.exports = router;

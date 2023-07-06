@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import LoginForm from "./LoginForm";
 const Home = () => {
   const navigate = useNavigate();
   // useEffect(() => {
@@ -10,10 +11,11 @@ const Home = () => {
     navigate("/notHome");
   }
   return (
-    <div className="text-3xl font-bold underline">
+    <div>
       HOMEPAGE
       <button onClick={handleClick}></button>
       <Link to="/notHome">nothome</Link>
+      <LoginForm />
     </div>
   );
 };
