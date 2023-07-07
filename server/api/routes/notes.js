@@ -9,10 +9,13 @@ router.get("/", ensureAuth, async (req, res) => {
 
 router.post("/create", async (req, res) => {
   try {
+    const date = new Date(req.body.date.replace("-", "/").replace("-", "/"));
+
     const postObj = {
       foods: req.body.food,
       userId: req.body.userId,
       comments: req.body.comments,
+      date,
     };
     console.log(req.user);
     const created = await notes.create(postObj);

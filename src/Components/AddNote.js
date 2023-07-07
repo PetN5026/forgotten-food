@@ -1,6 +1,6 @@
 import React from "react";
 import NoteForm from "./NoteForm";
-const AddNote = ({ setAddNotesOpen }) => {
+const AddNote = ({ setAddNotesOpen, user }) => {
   return (
     <>
       <div className="fixed w-screen h-screen">
@@ -34,7 +34,7 @@ const AddNote = ({ setAddNotesOpen }) => {
             </div>
             {/*body*/}
             <div className="relative p-6 flex-auto">
-              <NoteForm setAddNotesOpen={setAddNotesOpen} />
+              <NoteForm setAddNotesOpen={setAddNotesOpen} user={user} />
               <p className="my-4 text-slate-500 text-lg leading-relaxed">I</p>
             </div>
             {/*footer*/}

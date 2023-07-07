@@ -7,6 +7,7 @@ const NotesSchema = new mongoose.Schema({
     required: true,
   },
   comments: { type: String, required: true },
+  date: { type: Date, required: true },
 });
 
 module.exports = mongoose.model("Notes", NotesSchema);
