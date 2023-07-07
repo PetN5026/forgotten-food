@@ -16,8 +16,6 @@ const Home = () => {
   return (
     <div>
       HOMEPAGE
-      <button onClick={handleClick}>TEST</button>
-      <Link to="/notHome">nothome</Link>
       <LoginForm />
     </div>
   );

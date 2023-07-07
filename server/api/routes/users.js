@@ -3,6 +3,20 @@ const User = require("../../models/Users");
 const validator = require("validator");
 const passport = require("passport");
 
+router.get("/login", (req, res) => {
+  console.log("in get", req.user);
+  if (req.user) {
+    console.log(req.user);
+    const user = {
+      _id: req.user._id,
+      userName: req.user.userName,
+      email: req.user.email,
+    };
+
+    console.log("in get login", user);
+    return res.send(user);
+  }
+});
 router.post("/create", async (req, res, next) => {
   try {
     const validationErrors = {};
@@ -49,7 +63,6 @@ router.post("/login", async (req, res, next) => {
       return next(err);
     }
     if (!user) {
-      req.flash("errors", info);
       return res.send("user not found");
     }
     req.logIn(user, (err) => {
@@ -70,10 +83,10 @@ router.post("/logout", (req, res) => {
     if (err) {
       console.log("Error : Failed to destroy the session during logout.", err);
     }
-    console.log(req);
+    // console.log(req);
     req.user = null;
     res.send({ msg: "logged out" });
-    console.log(req.session);
+    // console.log(req.session);
   });
 });
 module.exports = router;

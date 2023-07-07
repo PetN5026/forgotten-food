@@ -1,6 +1,8 @@
 import React from "react";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 const LoginForm = () => {
+  const navigate = useNavigate();
   const emailRef = useRef("");
   const pwRef = useRef("");
 
@@ -26,7 +28,13 @@ const LoginForm = () => {
         "Content-Type": "application/json",
       },
     });
-    console.log(response);
+    const res = await fetch("/api/users/login");
+    const user = await res.json();
+    console.log("checking login");
+    console.log(res, user);
+    if (user) {
+      navigate("/dashboard");
+    }
   }
 
   async function logout(e) {

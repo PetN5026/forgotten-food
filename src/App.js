@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import Home from "./Components/Home";
 import NotHome from "./Components/NotHome";
+import Dashboard from "./Components/Dashboard";
 function App() {
   return (
     <Router>
@@ -15,6 +16,7 @@ function App() {
         <Route>
           <Route path="" element={<Home />} />
           <Route path="/notHome" element={<NotHome />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Route>
       </Routes>
     </Router>
