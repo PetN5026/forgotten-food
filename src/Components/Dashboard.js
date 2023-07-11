@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AddNote from "./AddNote";
 import Card from "./Card";
+import Navbar from "./Navbar";
 const Dashboard = () => {
   const [user, setUser] = useState({});
   const [addNotesOpen, setAddNotesOpen] = useState(false);
@@ -22,6 +23,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Navbar />
       {user?.userName}'s DASHBOARDPAGE
       <button
         onClick={() => {
