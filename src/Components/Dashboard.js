@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AddNote from "./AddNote";
 import Card from "./Card";
 import Navbar from "./Navbar";
+import Calendar from "./Calendar";
 const Dashboard = () => {
   const [user, setUser] = useState({});
   const [addNotesOpen, setAddNotesOpen] = useState(false);
@@ -45,6 +46,7 @@ const Dashboard = () => {
           return <Card note={note} />;
         })}
       </div>
+      <Calendar notes={notes} />
     </div>
   );
 };
