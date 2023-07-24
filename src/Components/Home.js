@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import LoginForm from "./LoginForm";
+import Calendar from "./Calendar";
 const Home = () => {
   const navigate = useNavigate();
   // useEffect(() => {
@@ -17,6 +18,8 @@ const Home = () => {
     <div>
       HOMEPAGE
       <LoginForm />
+      <Calendar />
+      TEST
     </div>
   );
 };
