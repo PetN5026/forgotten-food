@@ -8,6 +8,7 @@
   "dependencies": {
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/interaction": "^6.1.8",
     "@fullcalendar/react": "^6.1.8",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^5.0.0",

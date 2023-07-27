@@ -1,6 +1,9 @@
+//put a function to add things in test function
+
 import React, { useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
 const Calendar = ({ notes }) => {
   const cal = useRef();
   const dateRef = useRef();
@@ -17,7 +20,12 @@ const Calendar = ({ notes }) => {
     console.log(dateRef.current.value);
     api.addEvent({ title: "event 3", date: dateRef.current.value });
   }
-
+  function test(arg) {
+    const date = Date.parse(arg.dateStr);
+    const argD = Date.parse(arg.dateStr);
+    const parsed = new Date(date);
+    alert(`${arg.dateStr},${date.toString()}, ${date}, ${argD}, ${parsed}`);
+  }
   if (notes) {
     console.log("testttt,", notes);
   }
@@ -48,7 +56,10 @@ const Calendar = ({ notes }) => {
       {/* will need to figure out why the date is wrongly translated */}
       <FullCalendar
         ref={cal}
-        plugins={[dayGridPlugin]}
+        plugins={[dayGridPlugin, interactionPlugin]}
+        dateClick={(arg) => {
+          test(arg);
+        }}
         initialView="dayGridMonth"
         events={
           notes &&
@@ -77,6 +88,7 @@ const Calendar = ({ notes }) => {
             };
           })
         }
+        description={"notes && notes.comments"}
       />
       HI
     </div>
